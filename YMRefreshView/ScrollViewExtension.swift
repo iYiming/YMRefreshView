@@ -11,16 +11,16 @@ import ObjectiveC
 
 var associatedObjectHandle: UInt8 = 0
 
-extension UIScrollView{
-    var headerView: YMRefreshView?{
-        get{
-            var optionalObject:AnyObject? = objc_getAssociatedObject(self, &associatedObjectHandle)
+extension UIScrollView {
+    var headerView: YMRefreshView? {
+        get {
+            let optionalObject:AnyObject? = objc_getAssociatedObject(self, &associatedObjectHandle)
             return optionalObject as? YMRefreshView
         }
-        set{
-            objc_setAssociatedObject(self, &associatedObjectHandle, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        set {
+            objc_setAssociatedObject(self, &associatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             
-            if (headerView != nil){
+            if (headerView != nil) {
                 self.addSubview(self.headerView!)
             }
         }
